@@ -1,0 +1,15 @@
+DROP TABLE Besteht_Aus;
+DROP TABLE Bewertung;
+DELETE FROM Bild;
+DROP TABLE Bild;
+DROP TABLE Einheit;
+DROP TABLE Kochanweisung;
+DROP TABLE Materialzutat;
+DELETE FROM Person;
+DROP TABLE Person;
+DROP TABLE Rezept;
+DROP TABLE Tag;
+DROP TABLE Vergibt;
+DROP TABLE verwendet;
+DROP TABLE zeigt;
+DROP TABLE Zutat;

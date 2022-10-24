@@ -1,0 +1,38 @@
+ALTER TABLE Rezept ADD
+CONSTRAINT FK_Rezept_Zutat FOREIGN KEY (ZutatsNr) REFERENCES Zutat (ZutatsNr);
+ALTER TABLE Rezept ADD
+CONSTRAINT FK_Rezept_Person FOREIGN KEY (PERSON_NR_FK) REFERENCES Person(PERSONNR);
+ALTER TABLE Rezept ADD
+CONSTRAINT Chk_Max12Persons CHECK (Anzahl <= 12);
+
+ALTER TABLE Materialzutat ADD
+CONSTRAINT FK_Materialzutat_Einheit FOREIGN KEY (ZutatsNr) REFERENCES Zutat(ZutatsNr);
+
+ALTER TABLE Besteht_Aus ADD
+CONSTRAINT FK_Besteht_aus_KOCHANWEISUNG FOREIGN KEY (KochAnweisungsNr_FK) REFERENCES Kochanweisung(KochAnweisungsNr);
+ALTER TABLE Besteht_Aus ADD
+CONSTRAINT FK_Besteht_aus_REZEPT FOREIGN KEY (ZutatsNr_FK) REFERENCES Rezept(ZutatsNr);
+
+ALTER TABLE Verwendet ADD
+CONSTRAINT FK_Verwendet_Zutat1 FOREIGN KEY (ZutatsNr_FK) REFERENCES Zutat(ZutatsNr);
+ALTER TABLE Verwendet ADD
+CONSTRAINT FK_Verwendet_Zutat2 FOREIGN KEY (Rezept_ZutatsNr_FK) REFERENCES Zutat(ZutatsNr);
+
+ALTER TABLE Zeigt ADD
+CONSTRAINT FK_Zeigt_Kochanweisung FOREIGN KEY (KochanweisungsNr_FK) REFERENCES Kochanweisung(KochAnweisungsNr);
+ALTER TABLE Zeigt ADD
+CONSTRAINT FK_Zeigt_Bild FOREIGN KEY (BildNr_FK) REFERENCES Bild(BildNr);
+
+ALTER TABLE Bewertung ADD
+CONSTRAINT FK_Bewertung_Rezept FOREIGN KEY (Rezept_ZutatsNr_FK) REFERENCES Rezept(ZutatsNr);
+ALTER TABLE Bewertung ADD
+CONSTRAINT FK_Bewertung_Person FOREIGN KEY (PersonNr_FK) REFERENCES Person(PersonNr);
+ALTER TABLE Bewertung DROP (LeckerFaktor);
+
+
+ALTER TABLE Vergibt ADD
+CONSTRAINT FK_Vergibt_Person FOREIGN KEY (PersonNr_FK) REFERENCES Person(PersonNr);
+ALTER TABLE Vergibt ADD
+CONSTRAINT FK_Vergibt_Tag FOREIGN KEY (Wort_FK) REFERENCES Tag(Wort_PK);
+ALTER TABLE Vergibt ADD
+CONSTRAINT FK_Vergibt_Rezept FOREIGN KEY (ZutatsNr_FK) REFERENCES Rezept(ZutatsNr);
